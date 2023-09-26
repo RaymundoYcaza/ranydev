@@ -1,0 +1,11 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'My New Hugo Site'
+theme = 'LoveIt'
+[params]
+    [params.header]
+        [params.header.title]
+            name = 'RanyDev'
+    [params.home]
+        [params.home.profile]
+            subtitle = 'Software Developer'
