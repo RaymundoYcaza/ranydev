@@ -1,0 +1,46 @@
+---
+import { getCollection } from "astro:content";
+import { BaseLayout, PostCard } from "@ranydev/theme";
+import "../../styles/global.css";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout
+  title="Blog"
+  description="Artículos técnicos sobre desarrollo de software, arquitectura y herramientas."
+>
+  <header>
+    <p class="font-mono text-xs uppercase tracking-[0.2em] text-amber">blog</p>
+    <h1
+      class="mt-4 font-display text-4xl font-semibold tracking-tight md:text-5xl"
+    >
+      Publicaciones
+    </h1>
+    <p class="mt-4 max-w-xl leading-relaxed text-muted">
+      Notas sobre código, arquitectura y herramientas que uso.
+    </p>
+  </header>
+
+  <div class="mt-12">
+    {
+      posts.length === 0 ? (
+        <p class="font-mono text-sm text-muted">
+          Todavía no hay publicaciones. Vuelve pronto.
+        </p>
+      ) : (
+        posts.map((post) => (
+          <PostCard
+            href={`/blog/${post.id}`}
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            tags={post.data.tags}
+          />
+        ))
+      )
+    }
+  </div>
+</BaseLayout>

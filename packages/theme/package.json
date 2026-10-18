@@ -1,0 +1,13 @@
+{
+  "name": "@ranydev/theme",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles.css": "./src/styles/global.css"
+  },
+  "peerDependencies": {
+    "astro": "^7.0.0"
+  }
+}

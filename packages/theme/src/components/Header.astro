@@ -1,0 +1,85 @@
+---
+const nav = [
+  { href: "/", label: "Inicio" },
+  { href: "/blog", label: "Blog" },
+  { href: "/projects", label: "Proyectos" },
+  { href: "/about", label: "Acerca" },
+];
+
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isActive = (href: string) =>
+  href === "/" ? pathname === "/" : pathname.startsWith(href);
+---
+
+<header
+  class="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col justify-between border-r border-line bg-surface px-8 py-10 lg:flex"
+>
+  <div>
+    <a href="/" class="inline-flex items-baseline font-display text-2xl font-semibold tracking-tight">
+      rany<span class="text-amber">dev</span>
+    </a>
+    <p class="mt-2 font-mono text-xs text-muted">software developer</p>
+    <nav class="mt-12 flex flex-col gap-4">
+      {
+        nav.map(({ href, label }) => (
+          <a
+            href={href}
+            class:list={[
+              "font-mono text-sm transition-colors",
+              isActive(href) ? "text-amber" : "text-muted hover:text-paper",
+            ]}
+            aria-current={isActive(href) ? "page" : undefined}
+          >
+            {label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+  <div class="flex flex-col gap-4">
+    <span class="inline-flex items-center gap-2 font-mono text-xs text-muted">
+      <span class="size-1.5 rounded-full bg-amber"></span>
+      disponible para proyectos
+    </span>
+    <div class="flex gap-4 font-mono text-xs">
+      <a
+        href="https://github.com/RaymundoYcaza"
+        rel="noopener noreferrer"
+        target="_blank"
+        class="text-muted transition-colors hover:text-amber">gh</a
+      >
+      <a
+        href="https://www.linkedin.com/in/raymundoycaza"
+        rel="noopener noreferrer"
+        target="_blank"
+        class="text-muted transition-colors hover:text-amber">in</a
+      >
+    </div>
+  </div>
+</header>
+
+<header
+  class="sticky top-0 z-40 border-b border-line bg-ink/90 backdrop-blur lg:hidden"
+>
+  <div class="flex flex-wrap items-center justify-between gap-y-2 px-6 py-4">
+    <a href="/" class="font-display text-xl font-semibold tracking-tight">
+      rany<span class="text-amber">dev</span>
+    </a>
+    <nav class="flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs">
+      {
+        nav.map(({ href, label }) => (
+          <a
+            href={href}
+            class:list={[
+              "transition-colors",
+              isActive(href) ? "text-amber" : "text-muted hover:text-paper",
+            ]}
+            aria-current={isActive(href) ? "page" : undefined}
+          >
+            {label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>

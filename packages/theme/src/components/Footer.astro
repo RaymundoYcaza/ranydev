@@ -1,0 +1,27 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-line px-6 py-10 md:px-10">
+  <div
+    class="mx-auto flex max-w-3xl flex-col gap-2 font-mono text-xs text-muted sm:flex-row sm:items-center sm:justify-between"
+  >
+    <p>© {year} Raymundo Ycaza — ranydev</p>
+    <p>
+      hecho con
+      <a
+        href="https://astro.build"
+        rel="noopener noreferrer"
+        target="_blank"
+        class="text-amber transition-colors hover:text-paper">astro</a
+      >
+      +
+      <a
+        href="https://tailwindcss.com"
+        rel="noopener noreferrer"
+        target="_blank"
+        class="text-amber transition-colors hover:text-paper">tailwind</a
+      >
+    </p>
+  </div>
+</footer>
