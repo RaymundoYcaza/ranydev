@@ -1,0 +1,89 @@
+---
+import { getCollection, render } from "astro:content";
+import { BaseLayout } from "@ranydev/theme";
+import "../../styles/global.css";
+
+export async function getStaticPaths() {
+  const work = await getCollection("work", ({ data }) => !data.draft);
+  return work.map((item) => ({
+    params: { slug: item.id },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const { Content } = await render(item);
+
+const date = item.data.pubDate.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+});
+---
+
+<BaseLayout title={item.data.title} description={item.data.description}>
+  <article class="max-w-3xl">
+    <header>
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+        {item.data.kind}
+      </p>
+      <h1
+        class="mt-3 text-4xl font-semibold leading-[1.05] tracking-tight md:text-5xl"
+      >
+        {item.data.title}
+      </h1>
+      <p class="mt-4 max-w-xl leading-relaxed text-muted">
+        {item.data.description}
+      </p>
+      <div class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2">
+        <time
+          datetime={item.data.pubDate.toISOString()}
+          class="font-mono text-xs tabular-nums text-faint">{date}</time
+        >
+        {
+          item.data.status && (
+            <span class="font-mono text-[11px] uppercase tracking-wider text-muted">
+              {item.data.status}
+            </span>
+          )
+        }
+        {
+          item.data.repo && (
+            <a
+              href={item.data.repo}
+              rel="noopener noreferrer"
+              target="_blank"
+              class="font-mono text-xs text-ink underline decoration-line-strong underline-offset-4 transition-colors hover:decoration-ink"
+            >
+              repo →
+            </a>
+          )
+        }
+        {
+          item.data.demo && (
+            <a
+              href={item.data.demo}
+              rel="noopener noreferrer"
+              target="_blank"
+              class="font-mono text-xs text-ink underline decoration-line-strong underline-offset-4 transition-colors hover:decoration-ink"
+            >
+              demo →
+            </a>
+          )
+        }
+      </div>
+      <ul class="mt-4 flex flex-wrap gap-2">
+        {
+          item.data.tech.map((t) => (
+            <li class="rounded-full border border-line px-2.5 py-0.5 font-mono text-[11px] text-faint">
+              {t}
+            </li>
+          ))
+        }
+      </ul>
+    </header>
+
+    <div class="prose mt-10">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

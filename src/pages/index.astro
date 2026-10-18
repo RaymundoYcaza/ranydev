@@ -3,94 +3,179 @@ import { getCollection } from "astro:content";
 import { BaseLayout, PostCard, ProjectCard } from "@ranydev/theme";
 import "../styles/global.css";
 
-const posts = (await getCollection("blog", ({ data }) => !data.draft))
+const notes = (await getCollection("notes", ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
-const projects = (await getCollection("projects", ({ data }) => !data.draft))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 2);
+const work = await getCollection("work", ({ data }) => !data.draft);
+const sorted = work.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const tools = sorted.filter((w) => w.data.kind === "tool");
+const experiments = sorted.filter((w) => w.data.kind === "experiment");
 ---
 
 <BaseLayout
-  title="Inicio"
-  description="RanyDev — Raymundo Ycaza, software developer. Escribo sobre código, arquitectura y herramientas, y comparto los proyectos en los que trabajo."
+  title="Independent Software Lab"
+  description="ranydev — an independent software lab by Raymundo Ycaza. Tools, experiments, and engineering notes. Build. Experiment. Share."
 >
-  <section>
-    <p class="font-mono text-xs uppercase tracking-[0.2em] text-amber">
-      software developer
-    </p>
-    <h1
-      class="mt-4 font-display text-4xl font-semibold leading-[1.1] tracking-tight md:text-5xl"
-    >
-      Construyo software y escribo sobre el proceso.
-    </h1>
-    <p class="mt-6 max-w-xl leading-relaxed text-muted">
-      Soy Raymundo. Diseño y desarrollo aplicaciones web, y aquí documento lo
-      que aprendo sobre código, arquitectura y herramientas.
-    </p>
-    <div class="mt-8 flex gap-6 font-mono text-sm">
-      <a
-        href="/blog"
-        class="text-amber transition-colors hover:text-paper">blog →</a
+  <!-- 1. Hero -->
+  <section class="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(280px,0.8fr)] lg:gap-16">
+    <div>
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+        Independent Software Lab
+      </p>
+      <h1
+        class="mt-5 text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl"
       >
-      <a
-        href="/projects"
-        class="text-amber transition-colors hover:text-paper">proyectos →</a
-      >
+        Build. Experiment.<br />Share.
+      </h1>
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+        I'm Raymundo. I design and ship software tools, run experiments worth
+        writing down, and share the engineering notes — no fluff, just what works.
+      </p>
+      <div class="mt-8 flex gap-6 font-mono text-sm">
+        <a
+          href="/work"
+          class="text-ink underline decoration-accent-strong underline-offset-4 transition-colors hover:decoration-ink"
+          >work →</a
+        >
+        <a
+          href="/notes"
+          class="text-ink underline decoration-accent-strong underline-offset-4 transition-colors hover:decoration-ink"
+          >notes →</a
+        >
+      </div>
     </div>
+    <img
+      src="/images/ranydev-lighthouse.svg"
+      alt="Line illustration of a lighthouse beside waves and a boat."
+      width="1024"
+      height="1024"
+      fetchpriority="high"
+      class="mx-auto w-full max-w-sm object-contain lg:max-w-none"
+    />
   </section>
 
-  <section class="mt-20">
+  <!-- 2. Tools & Products -->
+  {
+    tools.length > 0 && (
+      <section class="mt-24">
+        <h2 class="flex items-baseline justify-between border-b border-line pb-3 font-mono text-xs uppercase tracking-[0.2em] text-muted">
+          Tools & Products
+          <a
+            href="/work"
+            class="normal-case tracking-normal text-muted transition-colors hover:text-ink"
+          >
+            view all
+          </a>
+        </h2>
+        <div class="mt-6 grid gap-4 sm:grid-cols-2">
+          {tools.map((item) => (
+            <ProjectCard
+              href={`/work/${item.id}`}
+              title={item.data.title}
+              description={item.data.description}
+              tech={item.data.tech}
+              repo={item.data.repo}
+              demo={item.data.demo}
+              kind={item.data.kind}
+              status={item.data.status}
+            />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <!-- 3. Experiments -->
+  {
+    experiments.length > 0 && (
+      <section class="mt-24">
+        <h2 class="flex items-baseline justify-between border-b border-line pb-3 font-mono text-xs uppercase tracking-[0.2em] text-muted">
+          Experiments
+          <a
+            href="/work"
+            class="normal-case tracking-normal text-muted transition-colors hover:text-ink"
+          >
+            view all
+          </a>
+        </h2>
+        <div class="mt-6 grid gap-4 sm:grid-cols-2">
+          {experiments.map((item) => (
+            <ProjectCard
+              href={`/work/${item.id}`}
+              title={item.data.title}
+              description={item.data.description}
+              tech={item.data.tech}
+              repo={item.data.repo}
+              demo={item.data.demo}
+              kind={item.data.kind}
+              status={item.data.status}
+            />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <!-- 4. Engineering Notes -->
+  <section class="mt-24">
     <h2
       class="flex items-baseline justify-between border-b border-line pb-3 font-mono text-xs uppercase tracking-[0.2em] text-muted"
     >
-      últimas publicaciones
+      Engineering Notes
       <a
-        href="/blog"
-        class="text-amber normal-case tracking-normal transition-colors hover:text-paper"
-        >ver todo</a
+        href="/notes"
+        class="normal-case tracking-normal text-muted transition-colors hover:text-ink"
+        >view all</a
       >
     </h2>
     <div class="mt-2">
       {
-        posts.map((post) => (
+        notes.map((note) => (
           <PostCard
-            href={`/blog/${post.id}`}
-            title={post.data.title}
-            description={post.data.description}
-            pubDate={post.data.pubDate}
-            tags={post.data.tags}
+            href={`/notes/${note.id}`}
+            title={note.data.title}
+            description={note.data.description}
+            pubDate={note.data.pubDate}
+            tags={note.data.tags}
+            video={note.data.video}
           />
         ))
       }
     </div>
   </section>
 
-  <section class="mt-20">
-    <h2
-      class="flex items-baseline justify-between border-b border-line pb-3 font-mono text-xs uppercase tracking-[0.2em] text-muted"
-    >
-      proyectos destacados
-      <a
-        href="/projects"
-        class="text-amber normal-case tracking-normal transition-colors hover:text-paper"
-        >ver todo</a
-      >
+  <!-- 5. Behind the Lab -->
+  <section class="mt-24 border-t border-line pt-12">
+    <h2 class="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+      Behind the Lab
     </h2>
-    <div class="mt-6 grid gap-4 sm:grid-cols-2">
-      {
-        projects.map((project) => (
-          <ProjectCard
-            href={`/projects/${project.id}`}
-            title={project.data.title}
-            description={project.data.description}
-            tech={project.data.tech}
-            repo={project.data.repo}
-            demo={project.data.demo}
-          />
-        ))
-      }
+    <p class="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
+      ranydev is the independent software lab of
+      <a
+        href="https://www.raymundoycaza.com"
+        rel="noopener noreferrer"
+        target="_blank"
+        class="text-ink underline decoration-accent-strong underline-offset-4 transition-colors hover:decoration-ink"
+        >Raymundo Ycaza</a
+      >{" "}. It exists to turn ideas into working tools, and to document the
+      engineering behind them. Prefer video? I'm also building a
+      <a
+        href="https://www.youtube.com/@ranydev"
+        rel="noopener noreferrer"
+        target="_blank"
+        class="text-ink underline decoration-accent-strong underline-offset-4 transition-colors hover:decoration-ink"
+        >YouTube channel</a
+      >.
+    </p>
+    <div class="mt-6">
+      <a
+        href="/about"
+        class="font-mono text-sm text-ink underline decoration-accent-strong underline-offset-4 transition-colors hover:decoration-ink"
+        >more about →</a
+      >
     </div>
   </section>
 </BaseLayout>

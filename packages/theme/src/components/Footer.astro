@@ -2,26 +2,35 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-line px-6 py-10 md:px-10">
+<footer class="border-t border-line">
   <div
-    class="mx-auto flex max-w-3xl flex-col gap-2 font-mono text-xs text-muted sm:flex-row sm:items-center sm:justify-between"
+    class="mx-auto flex w-full max-w-5xl flex-col gap-4 px-6 py-10 text-sm text-muted md:flex-row md:items-center md:justify-between md:px-10"
   >
-    <p>© {year} Raymundo Ycaza — ranydev</p>
-    <p>
-      hecho con
+    <div class="flex flex-col gap-1">
+      <p class="text-ink">Build. Experiment. Share.</p>
+      <p class="text-xs">© {year} Raymundo Ycaza — ranydev</p>
+    </div>
+
+    <div class="flex items-center gap-5 text-xs">
       <a
-        href="https://astro.build"
+        href="https://github.com/RaymundoYcaza"
         rel="noopener noreferrer"
         target="_blank"
-        class="text-amber transition-colors hover:text-paper">astro</a
+        class="transition-colors hover:text-ink">GitHub</a
       >
-      +
       <a
-        href="https://tailwindcss.com"
+        href="https://www.linkedin.com/in/raymundoycaza"
         rel="noopener noreferrer"
         target="_blank"
-        class="text-amber transition-colors hover:text-paper">tailwind</a
+        class="transition-colors hover:text-ink">LinkedIn</a
       >
-    </p>
+      <span class="text-faint">·</span>
+      <a
+        href="https://www.youtube.com/@ranydev"
+        rel="noopener noreferrer"
+        target="_blank"
+        class="transition-colors hover:text-ink">YouTube</a
+      >
+    </div>
   </div>
 </footer>

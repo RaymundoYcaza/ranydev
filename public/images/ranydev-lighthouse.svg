@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" fill="none">
+  <g stroke="#4C5159" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Lantern: centered roof, three panes, and a narrow base. -->
+    <path d="M264 68V48M232 101a32 32 0 0 1 64 0"/>
+    <path d="M220 110Q264 90 308 110L303 120H225Z"/>
+    <path d="M232 120V174M296 120V174M253 120V172M275 120V172"/>
+    <path d="M232 139Q264 129 296 139"/>
+    <path d="M224 188V179Q264 164 304 179V188"/>
+
+    <!-- Balcony rail, with evenly spaced uprights. -->
+    <path d="M200 208V230M328 208V230M226 198V219M251 194V215M277 194V215M302 198V219"/>
+    <path d="M200 208C200 184 328 184 328 208"/>
+    <path d="M200 230C200 206 328 206 328 230"/>
+    <path d="M200 230Q264 255 328 230"/>
+
+    <!-- The tower flares gently toward its foot; spiral bands stay inside. -->
+    <path d="M216 236C231 252 233 267 230 289L216 429"/>
+    <path d="M312 236C297 252 295 267 298 289L312 437"/>
+    <path d="M228 309C247 290 280 284 298 263"/>
+    <path d="M220 388C239 361 284 350 302 321"/>
+    <path d="M255 332V320a9 9 0 0 1 18 0v12Z"/>
+
+    <!-- Headland: open contours leave the tower and boat distinct. -->
+    <path d="M100 478C131 416 197 406 235 431C246 438 257 449 267 461"/>
+    <path d="M100 478C146 444 182 442 216 461C250 480 275 519 309 531"/>
+    <path d="M83 500C119 501 142 470 170 470C204 470 236 512 266 535C295 557 321 567 351 563"/>
+
+    <!-- Small cabin boat, entirely to the right of the tower. -->
+    <path d="M332 425H462M347 425V461M447 425V461M380 425V461M416 425V461"/>
+    <path d="M391 425L398 391H417L412 425"/>
+    <path d="M315 454Q402 479 502 447C495 480 484 500 465 513"/>
+    <path d="M315 454C324 481 341 503 364 516"/>
+    <path d="M325 474Q407 496 493 472"/>
+
+    <!-- Two short wave rows complete the composition without crossing it. -->
+    <path d="M310 521C328 532 341 532 358 521S389 510 406 521S437 532 454 521S485 510 502 521"/>
+    <path d="M351 548C369 559 382 559 399 548S430 537 447 548S478 559 495 548"/>
+  </g>
+</svg>

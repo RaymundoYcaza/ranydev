@@ -2,20 +2,20 @@ import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
 
 export async function GET(context) {
-  const posts = (
-    await getCollection("blog", ({ data }) => !data.draft)
+  const notes = (
+    await getCollection("notes", ({ data }) => !data.draft)
   ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
   return rss({
-    title: "RanyDev — Blog",
+    title: "ranydev — Notes",
     description:
-      "Artículos técnicos sobre desarrollo de software, arquitectura y herramientas.",
+      "Engineering notes on building software, tools, and experiments.",
     site: context.site,
-    items: posts.map((post) => ({
-      title: post.data.title,
-      description: post.data.description,
-      pubDate: post.data.pubDate,
-      link: `/blog/${post.id}`,
+    items: notes.map((note) => ({
+      title: note.data.title,
+      description: note.data.description,
+      pubDate: note.data.pubDate,
+      link: `/notes/${note.id}`,
     })),
   });
 }

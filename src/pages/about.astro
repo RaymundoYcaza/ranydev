@@ -4,48 +4,65 @@ import "../styles/global.css";
 ---
 
 <BaseLayout
-  title="Acerca"
-  description="Sobre Raymundo Ycaza, software developer: qué hago, con qué herramientas y cómo contactarme."
+  title="About"
+  description="About ranydev — an independent software lab by Raymundo Ycaza, building tools and sharing engineering notes."
 >
-  <header>
-    <p class="font-mono text-xs uppercase tracking-[0.2em] text-amber">acerca</p>
-    <h1
-      class="mt-4 font-display text-4xl font-semibold tracking-tight md:text-5xl"
-    >
-      Hola, soy Raymundo.
+  <header class="max-w-3xl">
+    <p class="font-mono text-xs uppercase tracking-[0.2em] text-muted">about</p>
+    <h1 class="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
+      Behind the lab.
     </h1>
   </header>
 
-  <div class="prose mt-10">
+  <div class="prose mt-10 max-w-3xl">
     <p class="lead">
-      Software developer enfocado en aplicaciones web. Me interesa escribir
-      código claro, diseñar arquitecturas que se puedan mantener y documentar
-      lo que aprendo por el camino.
+      I'm Raymundo Ycaza — a software developer building under the name
+      <strong>ranydev</strong>, an independent software lab focused on tools,
+      experiments, and honest engineering notes.
     </p>
     <p>
-      Este sitio es mi cuaderno público: aquí publico artículos técnicos y
-      describo los proyectos en los que trabajo.
+      This site is where I turn ideas into working software and write down what
+      the process actually taught me. No growth-hacking, no guru talk — just
+      real code and the decisions behind it.
     </p>
-    <h2>Qué hago</h2>
+
+    <h2>What I do</h2>
     <ul>
-      <li>Diseño y desarrollo de aplicaciones web de punta a punta.</li>
-      <li>Arquitectura de frontends y APIs.</li>
-      <li>Herramientas de desarrollo y automatización.</li>
+      <li>Design and build web tools end to end.</li>
+      <li>Run small, self-contained experiments worth sharing.</li>
+      <li>Write engineering notes on what works and what doesn't.</li>
     </ul>
-    <h2>Contacto</h2>
+
+    <h2>How I work</h2>
     <p>
-      Puedes encontrarme en
+      Build first, refine later. Prefer clarity over cleverness. Ship something
+      useful, then iterate. If it doesn't help someone build or ship, it
+      probably isn't worth publishing.
+    </p>
+
+    <h2>Elsewhere</h2>
+    <p>
+      Find me on
       <a
         href="https://github.com/RaymundoYcaza"
         rel="noopener noreferrer"
         target="_blank">GitHub</a
-      >
-      y
+      >,
       <a
         href="https://www.linkedin.com/in/raymundoycaza"
         rel="noopener noreferrer"
         target="_blank">LinkedIn</a
-      >.
+      >, or watch the build on
+      <a
+        href="https://www.youtube.com/@ranydev"
+        rel="noopener noreferrer"
+        target="_blank">YouTube</a
+      >. ranydev is part of the
+      <a
+        href="https://www.raymundoycaza.com"
+        rel="noopener noreferrer"
+        target="_blank">Raymundo Ycaza</a
+      > ecosystem.
     </p>
   </div>
 </BaseLayout>

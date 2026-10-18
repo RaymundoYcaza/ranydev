@@ -4,44 +4,47 @@
 
 @source "../../packages/theme/src";
 
-@theme {
-  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
-  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+/* Keep inline emphasis and links separated from adjacent prose text. */
+p a,
+p strong,
+p em,
+p code {
+  margin-inline-start: 0.18em;
 }
 
 .prose {
-  --tw-prose-body: var(--color-paper);
-  --tw-prose-headings: var(--color-paper);
-  --tw-prose-links: var(--color-amber);
-  --tw-prose-bold: var(--color-paper);
-  --tw-prose-code: var(--color-amber);
+  --tw-prose-body: var(--color-ink);
+  --tw-prose-headings: var(--color-ink);
+  --tw-prose-links: var(--color-ink);
+  --tw-prose-bold: var(--color-ink);
+  --tw-prose-code: var(--color-ink);
   --tw-prose-hr: var(--color-line);
   --tw-prose-bullets: var(--color-muted);
   --tw-prose-counters: var(--color-muted);
   --tw-prose-quotes: var(--color-muted);
-  --tw-prose-quote-borders: var(--color-line);
+  --tw-prose-quote-borders: var(--color-line-strong);
   --tw-prose-captions: var(--color-muted);
-  --tw-prose-strong: var(--color-paper);
+  --tw-prose-strong: var(--color-ink);
   --tw-prose-lead: var(--color-muted);
 }
 
 .prose
   :where(h1, h2, h3, h4)
   :not(:where([class~="not-prose"] *)) {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-weight: 600;
   letter-spacing: -0.02em;
 }
 
 .prose :where(a):not(:where([class~="not-prose"] *)) {
+  text-decoration-color: var(--color-accent-strong);
   text-underline-offset: 3px;
 }
 
 .prose :where(code):not(:where([class~="not-prose"] *)):not(pre code) {
   font-family: var(--font-mono);
   font-size: 0.875em;
-  background-color: var(--color-surface);
+  background-color: var(--color-card);
   border: 1px solid var(--color-line);
   border-radius: 4px;
   padding: 0.1em 0.35em;
@@ -53,14 +56,15 @@
 }
 
 .prose :where(pre):not(:where([class~="not-prose"] *)) {
-  background-color: var(--color-surface);
+  background-color: var(--color-card);
   border: 1px solid var(--color-line);
   border-radius: 8px;
 }
 
 .prose :where(blockquote):not(:where([class~="not-prose"] *)) {
   font-style: normal;
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
+  font-weight: 500;
 }
 
 .prose :where(hr):not(:where([class~="not-prose"] *)) {

@@ -1,28 +1,32 @@
-@theme {
-  --color-ink: #12141c;
-  --color-surface: #1a1d28;
-  --color-raised: #222634;
-  --color-paper: #e8eaf2;
-  --color-muted: #8a90a3;
-  --color-amber: #e3a857;
-  --color-amber-dim: #b8863f;
-  --color-steel: #6f8ca8;
-  --color-line: #2a2e3d;
+@import "@fontsource-variable/geist/index.css";
+@import "@fontsource-variable/geist-mono/index.css";
 
-  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
-  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+@theme {
+  --color-ink: #262c35;
+  --color-ink-bold: #12151a;
+  --color-bg: #e8e4df;
+  --color-card: #f3f0ec;
+  --color-muted: #4c5159;
+  --color-faint: #74777d;
+  --color-line: #c9c4bf;
+  --color-line-strong: #a9a39e;
+  --color-accent: #cebebe;
+  --color-accent-strong: #8a6969;
+
+  --font-display: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, monospace;
 }
 
 @layer base {
   :root {
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   html {
     font-family: var(--font-sans);
-    background-color: var(--color-ink);
-    color: var(--color-paper);
+    background-color: var(--color-bg);
+    color: var(--color-ink);
   }
 
   body {
@@ -32,13 +36,13 @@
   }
 
   ::selection {
-    background-color: var(--color-amber);
-    color: var(--color-ink);
+    background-color: var(--color-accent);
+    color: var(--color-ink-bold);
   }
 
   a:focus-visible,
   button:focus-visible {
-    outline: 2px solid var(--color-amber);
+    outline: 2px solid var(--color-accent-strong);
     outline-offset: 2px;
     border-radius: 2px;
   }
