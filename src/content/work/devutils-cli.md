@@ -1,6 +1,6 @@
 ---
 title: "devutils-cli"
-description: "A tiny command-line toolkit of developer utilities — format, check, and scaffold without leaving the terminal."
+description: "A tiny command-line toolkit of developer utilities: format, check, and scaffold without leaving the terminal."
 kind: "tool"
 status: "open-source"
 tech: ["TypeScript", "Node.js", "CLI"]
@@ -22,5 +22,5 @@ no config required to get value.
 Early and experimental. It solves my own workflow first; if it helps yours,
 the repo is open.
 
-> Replace this seed with a real project — the problem it solves, the
+> Replace this seed with a real project: the problem it solves, the
 > technical decisions, and a link to the repo or demo.

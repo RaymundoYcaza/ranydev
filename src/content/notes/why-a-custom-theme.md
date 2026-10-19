@@ -23,7 +23,7 @@ The theme lives in `packages/theme` as an npm workspace. That means:
 
 - Components import as `@ranydev/theme` on any site.
 - Design tokens are defined once with Tailwind 4's `@theme`.
-- Content stays in the site, not the theme — so the theme stays reusable.
+- Content stays in the site, not the theme, so the theme stays reusable.
 
 ```
 import { BaseLayout, PostCard } from "@ranydev/theme";
@@ -32,7 +32,7 @@ import { BaseLayout, PostCard } from "@ranydev/theme";
 ## What I prioritized
 
 - **One typeface with a voice**: Geist for everything, Geist Mono for code
-  and labels — a clean, utilitarian stack.
+  and labels, a clean, utilitarian stack.
 - **Pure monochrome**: near-black ink on a near-white surface, no chromatic
   accent, contrast doing the work.
 - **Accessibility**: visible focus, real contrast, and

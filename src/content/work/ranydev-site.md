@@ -1,5 +1,5 @@
 ---
-title: "ranydev — this site"
+title: "The ranydev site"
 description: "The site you're reading: notes and work built with Astro 7, Tailwind 4, and a custom theme in a monorepo."
 kind: "tool"
 status: "open-source"
@@ -8,8 +8,8 @@ repo: "https://github.com/RaymundoYcaza/ranydev"
 pubDate: 2026-10-18
 ---
 
-The personal site for the lab — a place to publish engineering notes and
-showcase the work, built to double as the testbed for my own theme.
+The personal site for the lab. It publishes engineering notes and showcases
+the work, while doubling as the testbed for my own theme.
 
 ## Technical decisions
 

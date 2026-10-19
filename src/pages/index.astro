@@ -5,7 +5,11 @@ import "../styles/global.css";
 
 const notes = (await getCollection("notes", ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+  .slice(0, 3)
+  .map((note) => {
+    const words = (note.body ?? "").trim().split(/\s+/).filter(Boolean).length;
+    return { note, readingMinutes: Math.max(1, Math.ceil(words / 220)) };
+  });
 
 const work = await getCollection("work", ({ data }) => !data.draft);
 const sorted = work.sort(
@@ -17,7 +21,7 @@ const experiments = sorted.filter((w) => w.data.kind === "experiment");
 
 <BaseLayout
   title="Independent Software Lab"
-  description="ranydev — an independent software lab by Raymundo Ycaza. Tools, experiments, and engineering notes. Build. Experiment. Share."
+  description="ranydev: an independent software lab by Raymundo Ycaza. Tools, experiments, and engineering notes. Build. Experiment. Share."
 >
   <!-- 1. Hero -->
   <section class="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(280px,0.8fr)] lg:gap-16">
@@ -32,7 +36,7 @@ const experiments = sorted.filter((w) => w.data.kind === "experiment");
       </h1>
       <p class="mt-6 max-w-xl text-lg leading-relaxed text-muted">
         I'm Raymundo. I design and ship software tools, run experiments worth
-        writing down, and share the engineering notes — no fluff, just what works.
+        writing down, and share the engineering notes. No fluff, just what works.
       </p>
       <div class="mt-8 flex gap-6 font-mono text-sm">
         <a
@@ -133,16 +137,17 @@ const experiments = sorted.filter((w) => w.data.kind === "experiment");
     </h2>
     <div class="mt-2">
       {
-        notes.map((note) => (
-          <PostCard
-            href={`/notes/${note.id}`}
-            title={note.data.title}
-            description={note.data.description}
-            pubDate={note.data.pubDate}
-            tags={note.data.tags}
-            video={note.data.video}
-          />
-        ))
+      notes.map(({ note, readingMinutes }) => (
+        <PostCard
+          href={`/notes/${note.id}`}
+          title={note.data.title}
+          description={note.data.description}
+          pubDate={note.data.pubDate}
+          tags={note.data.tags}
+          video={note.data.video}
+          readingMinutes={readingMinutes}
+        />
+      ))
       }
     </div>
   </section>

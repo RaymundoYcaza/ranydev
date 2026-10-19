@@ -65,6 +65,8 @@ p code {
   font-style: normal;
   font-family: var(--font-sans);
   font-weight: 500;
+  border-left: 2px solid var(--color-accent-strong);
+  padding-left: 1rem;
 }
 
 .prose :where(hr):not(:where([class~="not-prose"] *)) {

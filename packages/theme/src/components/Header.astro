@@ -11,7 +11,7 @@ const isActive = (href: string) => pathname.startsWith(href);
 
 <header class="sticky top-0 z-40 border-b border-line bg-bg/80 backdrop-blur">
   <div class="mx-auto flex w-full max-w-5xl items-center justify-between px-6 py-4 md:px-10">
-    <a href="/" class="flex items-center" aria-label="ranydev — home">
+    <a href="/" class="flex items-center" aria-label="ranydev, home">
       <img
         src="/ranydev-wordmark.svg"
         alt="ranydev"
@@ -42,6 +42,17 @@ const isActive = (href: string) => pathname.startsWith(href);
       </nav>
 
       <div class="flex items-center gap-4 border-l border-line pl-5">
+        <a
+          href="https://x.com/ranydev"
+          rel="noopener noreferrer"
+          target="_blank"
+          class="text-muted transition-colors hover:text-ink"
+          aria-label="X"
+        >
+          <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
+        </a>
         <a
           href="https://github.com/RaymundoYcaza"
           rel="noopener noreferrer"

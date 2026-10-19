@@ -6,9 +6,18 @@ interface Props {
   pubDate: Date;
   tags?: string[];
   video?: string;
+  readingMinutes?: number;
 }
 
-const { href, title, description, pubDate, tags = [], video } = Astro.props;
+const {
+  href,
+  title,
+  description,
+  pubDate,
+  tags = [],
+  video,
+  readingMinutes,
+} = Astro.props;
 const date = pubDate.toLocaleDateString("en-US", {
   year: "numeric",
   month: "short",
@@ -30,17 +39,17 @@ const date = pubDate.toLocaleDateString("en-US", {
       <h3 class="text-xl font-semibold tracking-tight sm:text-2xl">
         <a
           href={href}
-          class="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat transition-[background-size] duration-300 group-hover:bg-[length:100%_1px]"
+          class="bg-[linear-gradient(var(--color-accent-strong),var(--color-accent-strong))] bg-[length:0%_1px] bg-left-bottom bg-no-repeat transition-[background-size] duration-300 group-hover:bg-[length:100%_1px]"
         >
           {title}
         </a>
       </h3>
       <p class="mt-2 text-sm leading-relaxed text-muted">{description}</p>
       {
-        (tags.length > 0 || video) && (
+        (tags.length > 0 || video || readingMinutes) && (
           <div class="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1">
             {tags.map((tag) => (
-              <span class="font-mono text-[11px] uppercase tracking-wider text-faint">
+              <span class="rounded-full bg-accent px-2 py-0.5 font-mono text-[11px] uppercase tracking-wider text-ink-bold">
                 {tag}
               </span>
             ))}
@@ -49,10 +58,15 @@ const date = pubDate.toLocaleDateString("en-US", {
                 href={video}
                 rel="noopener noreferrer"
                 target="_blank"
-                class="font-mono text-[11px] uppercase tracking-wider text-muted underline underline-offset-2 hover:text-ink"
+                class="rounded-full bg-accent-strong px-2 py-0.5 font-mono text-[11px] uppercase tracking-wider text-bg transition-opacity hover:opacity-80"
               >
                 video ↗
               </a>
+            )}
+            {readingMinutes && (
+              <span class="font-mono text-[11px] tabular-nums text-faint">
+                {readingMinutes} min read
+              </span>
             )}
           </div>
         )

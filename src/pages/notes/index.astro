@@ -6,14 +6,39 @@ import "../../styles/global.css";
 const notes = (await getCollection("notes", ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+const tagCounts = new Map<string, number>();
+for (const note of notes) {
+  for (const tag of note.data.tags) {
+    tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+  }
+}
+const tags = [...tagCounts.entries()].sort(
+  (a, b) => b[1] - a[1] || a[0].localeCompare(b[0]),
+);
+
+const withMeta = notes.map((note) => {
+  const words = (note.body ?? "").trim().split(/\s+/).filter(Boolean).length;
+  const readingMinutes = Math.max(1, Math.ceil(words / 220));
+  return { note, readingMinutes };
+});
 ---
 
 <BaseLayout
   title="Notes"
-  description="Engineering notes on building software, tools, and experiments — written as I ship."
+  description="Engineering notes on building software, tools, and experiments, written as I ship."
 >
   <header class="max-w-3xl">
-    <p class="font-mono text-xs uppercase tracking-[0.2em] text-muted">notes</p>
+    <div class="flex items-center justify-between">
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+        notes
+      </p>
+      <a
+        href="/rss.xml"
+        class="font-mono text-xs uppercase tracking-[0.2em] text-muted transition-colors hover:text-ink"
+        >rss ↗</a
+      >
+    </div>
     <h1 class="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
       Engineering Notes
     </h1>
@@ -23,24 +48,104 @@ const notes = (await getCollection("notes", ({ data }) => !data.draft)).sort(
     </p>
   </header>
 
+  {
+    tags.length > 0 && (
+      <div
+        class="mt-8 flex flex-wrap items-center gap-2"
+        role="group"
+        aria-label="Filter notes by tag"
+      >
+        <button
+          type="button"
+          data-filter="all"
+          aria-pressed="true"
+          class="filter-chip rounded-full bg-accent px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-ink-bold transition-colors hover:bg-accent-strong hover:text-bg"
+        >
+          all
+        </button>
+        {tags.map(([tag, count]) => (
+          <button
+            type="button"
+            data-filter={tag}
+            aria-pressed="false"
+            class="filter-chip rounded-full border border-line px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-muted transition-colors hover:border-accent-strong hover:text-ink"
+          >
+            {tag} ({count})
+          </button>
+        ))}
+      </div>
+    )
+  }
+
   <div class="mt-12">
     {
-      notes.length === 0 ? (
+      withMeta.length === 0 ? (
         <p class="font-mono text-sm text-muted">
           No notes yet. Check back soon.
         </p>
       ) : (
-        notes.map((note) => (
-          <PostCard
-            href={`/notes/${note.id}`}
-            title={note.data.title}
-            description={note.data.description}
-            pubDate={note.data.pubDate}
-            tags={note.data.tags}
-            video={note.data.video}
-          />
+        withMeta.map(({ note, readingMinutes }) => (
+          <div
+            data-note
+            data-tags={note.data.tags.join(",")}
+          >
+            <PostCard
+              href={`/notes/${note.id}`}
+              title={note.data.title}
+              description={note.data.description}
+              pubDate={note.data.pubDate}
+              tags={note.data.tags}
+              video={note.data.video}
+              readingMinutes={readingMinutes}
+            />
+          </div>
         ))
       )
     }
+    <p
+      data-empty
+      hidden
+      class="hidden font-mono text-sm text-muted"
+    >
+      No notes with this tag.
+    </p>
   </div>
 </BaseLayout>
+
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>("[data-filter]");
+  const notes = document.querySelectorAll<HTMLElement>("[data-note]");
+  const empty = document.querySelector<HTMLElement>("[data-empty]");
+
+  const ACTIVE =
+    "bg-accent text-ink-bold border-transparent";
+  const INACTIVE =
+    "border border-line text-muted hover:border-accent-strong hover:text-ink";
+
+  chips.forEach((chip) => {
+    chip.addEventListener("click", () => {
+      const tag = chip.dataset.filter ?? "all";
+      chips.forEach((c) => {
+        const active = c === chip;
+        c.setAttribute("aria-pressed", String(active));
+        c.classList.remove("bg-accent", "text-ink-bold", "border-transparent");
+        c.classList.remove(
+          "border",
+          "border-line",
+          "text-muted",
+          "hover:border-accent-strong",
+          "hover:text-ink",
+        );
+        c.classList.add(...(active ? ACTIVE.split(" ") : INACTIVE.split(" ")));
+      });
+      let visible = 0;
+      notes.forEach((note) => {
+        const tags = (note.dataset.tags ?? "").split(",");
+        const show = tag === "all" || tags.includes(tag);
+        note.toggleAttribute("hidden", !show);
+        if (show) visible += 1;
+      });
+      if (empty) empty.classList.toggle("hidden", visible !== 0);
+    });
+  });
+</script>
