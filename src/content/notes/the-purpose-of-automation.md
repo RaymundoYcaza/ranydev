@@ -3,7 +3,6 @@ title: "The Purpose of Automation"
 description: "A guide to thinking about what automation should contribute to society."
 pubDate: 2026-10-21
 tags: ["automation", "society", "technology"]
-draft: true
 ---
 
 # What problem should automation solve?
