@@ -1,0 +1,103 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "ranydev, home" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "ranydev" [ref=e5]
+      - generic [ref=e6]:
+        - navigation [ref=e7]:
+          - link "Work" [ref=e8] [cursor=pointer]:
+            - /url: /work
+          - link "Notes" [ref=e9] [cursor=pointer]:
+            - /url: /notes
+          - link "About" [ref=e10] [cursor=pointer]:
+            - /url: /about
+        - generic [ref=e11]:
+          - link "X" [ref=e12] [cursor=pointer]:
+            - /url: https://x.com/ranydev
+          - link "GitHub" [ref=e15] [cursor=pointer]:
+            - /url: https://github.com/RaymundoYcaza
+          - link "LinkedIn" [ref=e18] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/raymundoycaza
+  - main [ref=e21]:
+    - article [ref=e22]:
+      - generic [ref=e23]:
+        - link "← back to notes" [ref=e24] [cursor=pointer]:
+          - /url: /notes
+        - generic [ref=e25]:
+          - time [ref=e26]: October 17, 2026
+          - generic [ref=e27]: 3 min read
+        - heading "Shipping this site with Astro 7" [level=1] [ref=e28]
+        - paragraph [ref=e29]: Why I came back to building a simple blog, and how AI helped me get here.
+        - generic [ref=e30]:
+          - generic [ref=e31]: blogging
+          - generic [ref=e32]: web
+          - generic [ref=e33]: artificial intelligence
+          - generic [ref=e34]: programming
+      - generic [ref=e35]:
+        - paragraph [ref=e36]:
+          - img "Stickman sitting at a desk in front of a laptop, with a night window behind him." [ref=e37]
+        - paragraph [ref=e38]: It’s been a long, long time since I used Drupal, Joomla, Xoops, Nuke, or WordPress.
+        - paragraph [ref=e39]: And, sure, it’s been even longer since those old attempts at building blogs in HTML and trying to impress myself with Dreamweaver.
+        - paragraph [ref=e40]: I don’t know about you, but back then I actually liked the idea of hand-coding websites for my blogs.
+        - paragraph [ref=e41]: "But of course, problems would eventually show up: tedious, repetitive work, never enough time to automate things, comments, and a whole lot more that made the idea of building static sites less appealing."
+        - paragraph [ref=e42]: "There was also a middle ground: build something with PHP or another interpreted language to make it a bit more dynamic without losing the simplicity."
+        - paragraph [ref=e43]: But then other issues would come up and things would get tricky.
+        - paragraph [ref=e44]: You know what I mean, right?
+        - paragraph [ref=e45]: At least in my case, over time I forgot about building a blog with something simple like HTML, CSS, and JavaScript.
+        - paragraph [ref=e46]: WordPress was what I settled for, guiltily, and I gave in to the uncomfortable comfort of dealing with plugin updates, database backups, optimizations, version upgrade problems, hosting costs, and a whole lot more.
+        - paragraph [ref=e47]: We know how to code, sure. But wouldn’t it be nice to write things in a much simpler way? Something closer to grabbing a notebook and a pencil, writing a page, and pinning it to some random hallway bulletin board?
+        - paragraph [ref=e48]: So just when we thought we’d found the sweet spot, or maybe we’d only found a way to stay stuck, along came what everyone calls the disruptive phenomenon of artificial intelligence.
+        - paragraph [ref=e49]: Yeah, I know AI had been around for a long time, and I know we’re talking about generative AI. You know that, and I know that. We’re just having a relaxed chat here, right?
+        - paragraph [ref=e50]: Anyway, like I was saying, AI showed up alongside the aggressive marketing campaign pushing it, and it’s stirred up some chaos and confusion.
+        - paragraph [ref=e51]: And yet, in the middle of all that chaos, there are opportunities, like a fire in the forest.
+        - paragraph [ref=e52]: Using this tool let me dust off that old itch to have a simple site I could make as simple or as fancy as I wanted, without spending much time on it.
+        - paragraph [ref=e53]: And sure, I could build it with plain HTML and add the occasional dynamic bit when I needed one.
+        - paragraph [ref=e54]: But instead, I sat down with my cup of coffee and my old ThinkPad and built this blog, shiny new logo and all, in just a couple of hours. (Yeah, free LLMs aren’t that fast, but why am I in a hurry?)
+        - paragraph [ref=e55]: Now here I am, writing on a Sunday night like the old days, without thinking about likes or views, and without adding Google Analytics.
+        - paragraph [ref=e56]: I think we should always look for some kind of balance between what works and what we actually need.
+        - paragraph [ref=e57]: Why build a whole Symfony framework for a simple blog?
+        - paragraph [ref=e58]: And why do I need to prove I can build an award-winning blog with nothing but my pocketknife and a toothbrush?
+        - paragraph [ref=e59]: The right solution is hard to find, but it’s always somewhere between pride and being way too comfortable.
+        - paragraph [ref=e60]: So while AI is making our star collapse into a black hole and everyone is pulling their hair out, I’ve decided to step through that black hole’s portal and travel back in time. And you have no idea how much I’m enjoying it!
+        - paragraph [ref=e61]: See you.
+      - navigation "Note navigation" [ref=e62]:
+        - link "← older Why Start a Blog?" [ref=e63] [cursor=pointer]:
+          - /url: /notes/why-start-a-blog
+          - text: ← older
+          - generic [ref=e64]: Why Start a Blog?
+      - generic [ref=e65]:
+        - heading "Related" [level=2] [ref=e66]
+        - article [ref=e68]:
+          - generic [ref=e69]:
+            - time [ref=e70]: Oct 11, 2026
+            - generic [ref=e71]:
+              - heading [level=3] [ref=e72]:
+                - link "Why Start a Blog?" [ref=e73] [cursor=pointer]:
+                  - /url: /notes/why-start-a-blog
+              - paragraph [ref=e74]: A programmer's case for writing in the age of AI, and a small manifesto for keeping at it.
+              - generic [ref=e75]:
+                - generic [ref=e76]: writing
+                - generic [ref=e77]: programming
+                - generic [ref=e78]: artificial intelligence
+                - generic [ref=e79]: 2 min read
+  - contentinfo [ref=e80]:
+    - generic [ref=e81]:
+      - generic [ref=e82]:
+        - paragraph [ref=e83]: Build. Experiment. Share.
+        - paragraph [ref=e84]: © 2026 Raymundo Ycaza · ranydev
+      - generic [ref=e85]:
+        - link "X" [ref=e86] [cursor=pointer]:
+          - /url: https://x.com/ranydev
+        - link "GitHub" [ref=e87] [cursor=pointer]:
+          - /url: https://github.com/RaymundoYcaza
+        - link "LinkedIn" [ref=e88] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/raymundoycaza
+        - generic [ref=e89]: ·
+        - link "YouTube" [ref=e90] [cursor=pointer]:
+          - /url: https://www.youtube.com/@ranydev
+  - generic [ref=e93]:
+    - button [ref=e94]
+    - button [ref=e100]
+    - button [ref=e104]
+    - button [ref=e109]
